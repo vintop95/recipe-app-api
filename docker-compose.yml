@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    app:
+      build:
+        context: .
+      ports:
+        # map port 8000 of host to 8000 of docker
+        - "8000:8000"
+      volumes:
+        # map directory of host in directory of docker
+        - ./app:/app
+      # shell run command
+      command: >
+        sh -c "python manage.py runserver 0.0.0.0:8000"
