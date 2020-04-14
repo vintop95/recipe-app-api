@@ -1,3 +1,13 @@
+# build the docker image after adding/updating python modules
 docker-compose build
 
-docker-compose run app sh -c "python manage.py test"
+# test the app and lint it
+docker-compose run app sh -c "python manage.py test && flake8"
+
+# create core part of app
+docker-compose run app sh -c "python manage.py startapp core"
+
+# Migrations are Django’s way of propagating changes you make to your models
+# (adding a field, deleting a model, etc.) into your database schema.
+# RUN every time the model is changed
+docker-compose run app sh -c "python manage.py makemigrations core"
