@@ -120,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 # Added by Vincenzo Topazio
 
 AUTH_USER_MODEL = 'core.User'

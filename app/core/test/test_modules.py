@@ -17,3 +17,33 @@ class ModelTests(TestCase):
 
         self.assertEqual(user.email, email)
         self.assertTrue(user.check_password(password))
+
+    def test_new_user_email_normalized(self):
+        """Test the email for a new user is normalized"""
+        email = 'test@TEST.COM'
+        password = 'Testpass123'
+        user = get_user_model().objects.create_user(
+            email=email,
+            password=password
+        )
+
+        self.assertEqual(user.email, email.lower())
+
+    def test_new_user_invalid_email(self):
+        """Test creating user with no email raises error"""
+
+        # The with statement itself ensures proper acquisition
+        # and release of resources
+        # https://www.geeksforgeeks.org/with-statement-in-python/
+        with self.assertRaises(ValueError):
+            get_user_model().objects.create_user(None, 'test123')
+
+    def test_create_new_superuser(self):
+        """Test creating a new superuser"""
+        user = get_user_model().objects.create_superuser(
+            'test@test.com',
+            'test123'
+        )
+
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_staff)
