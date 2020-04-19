@@ -1,5 +1,6 @@
 # go to project folder
 cd Projects/recipe-app-api/
+cd github/recipe-app-api/
 
 # build the docker image after adding/updating python modules
 docker-compose build
