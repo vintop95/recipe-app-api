@@ -15,3 +15,7 @@ docker-compose run app sh -c "python manage.py startapp core"
 # (adding a field, deleting a model, etc.) into your database schema.
 # RUN every time the model is changed
 docker-compose run app sh -c "python manage.py makemigrations core"
+
+# Create user part of app
+# --rm: remove the container and keep the system cleaner
+docker-compose run --rm app sh -c "python manage.py startapp user"
