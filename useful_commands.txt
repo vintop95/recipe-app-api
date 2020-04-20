@@ -5,6 +5,9 @@ cd github/recipe-app-api/
 # build the docker image after adding/updating python modules
 docker-compose build
 
+# create app (startproject)
+docker-compose run app sh -c "django-admin.py startproject app ."
+
 # test the app and lint it
 docker-compose run app sh -c "python manage.py test && flake8"
 
@@ -19,3 +22,6 @@ docker-compose run app sh -c "python manage.py makemigrations core"
 # Create user part of app
 # --rm: remove the container and keep the system cleaner
 docker-compose run --rm app sh -c "python manage.py startapp user"
+
+# start web service
+docker-compose up
