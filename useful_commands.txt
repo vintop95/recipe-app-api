@@ -17,11 +17,19 @@ docker-compose run app sh -c "python manage.py startapp core"
 # Migrations are Django’s way of propagating changes you make to your models
 # (adding a field, deleting a model, etc.) into your database schema.
 # RUN every time the model is changed
-docker-compose run app sh -c "python manage.py makemigrations core"
+docker-compose run app sh -c "python manage.py makemigrations"
 
 # Create user part of app
 # --rm: remove the container and keep the system cleaner
 docker-compose run --rm app sh -c "python manage.py startapp user"
+
+# create app recipe
+docker-compose run --rm app sh -c "python manage.py startapp recipe"
+  - add the created app in INSTALLED_APPS in settings.py
+  - add tests in test_modules.py
+  - create recipe model: add model in models.py
+  - add admin.site.register in admin.py
+  - make migrations (docker-compose run app sh -c "python manage.py makemigrations")
 
 # start web service
 docker-compose up

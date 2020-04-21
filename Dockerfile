@@ -15,15 +15,14 @@ COPY ./requirements.txt /requirements.txt
 # --virtual: set up alias dependencies to remove dependencies later
 RUN apk update
 RUN apk add --update --no-cache postgresql-client
-RUN apk add --update --no-cache --virtual .tmp-buil-deps \
+RUN apk add --update --no-cache --virtual .tmp-build-deps \
       # all dependecies needed to install postgres into docker image
       gcc libc-dev linux-headers postgresql-dev
 
 # install python modules in requirements.txt file
 RUN pip install -r /requirements.txt
 # remove temporary dependencies added before
-# TODO: DEACTIVATED BECAUSE OF BUILDING ERROR
-# RUN apk del .tmp-build-deps
+RUN apk del .tmp-build-deps
 
 # create app folder and copy it from the repo
 RUN mkdir /app
