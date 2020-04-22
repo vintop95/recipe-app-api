@@ -30,6 +30,11 @@ docker-compose run --rm app sh -c "python manage.py startapp recipe"
   - create recipe model: add model in models.py
   - add admin.site.register in admin.py
   - make migrations (docker-compose run app sh -c "python manage.py makemigrations")
+  - START CREATING TESTS (200 CREATED, 400 BAD REQ)
+  - CREATE SERIALIZER
+  - CREATE VIEWS
+  - CREATE ROUTER URLS
+  
 
 # start web service
 docker-compose up
